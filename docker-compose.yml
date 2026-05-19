@@ -1,0 +1,21 @@
+name: vueconf-workshop-2026
+services:
+  postgres:
+    image: pgvector/pgvector:pg16-trixie
+    platform: ${PLATFORM:-linux/amd64}
+    shm_size: 1g
+    volumes:
+      - postgres-vol:/data/postgres
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    healthcheck:
+      test: sh -c "pg_isready -U postgres"
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PGDATA: "/data/postgres"
+volumes:
+  postgres-vol:

@@ -19,7 +19,6 @@ logs
 .idea
 .vscode
 !.vscode/extensions.json
-/docker-compose.yml
 
 # Local env files
 .env
